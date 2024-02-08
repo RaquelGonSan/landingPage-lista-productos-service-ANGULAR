@@ -1,0 +1,12 @@
+<div class="center">
+    <div class="card" style="max-width: 20rem;"  *ngIf="!loading">
+        <img class="card-img-top" src="{{product?.image}}" class="card-img-top" alt="{{product?.title}}">
+        <div class="card-body">
+        <h5 class="card-title">{{product?.title}}</h5>
+        <h4 [ngStyle]="{'color': color}" >{{product?.price | currency:'EUR' }}</h4>
+        <p class="card-text">{{product?.description}}</p>
+        </div>
+    </div>
+</div>
+
+

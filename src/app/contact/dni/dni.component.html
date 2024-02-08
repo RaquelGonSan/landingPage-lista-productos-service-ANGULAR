@@ -1,0 +1,7 @@
+
+<form [formGroup]="formularioDocumento">
+    <label for="name" class="form-label">{{newVariable}}</label>
+    <input [ngClass]="{'is-invalid':  hasErrors('dni', 'required')}" 
+    type="text" class="form-control" id="dni" formControlName="dni">
+    <div class="text-danger" *ngIf="hasErrors('dni', 'required')" > Campo {{newVariable}} es obligatorio </div>
+</form>

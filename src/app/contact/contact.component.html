@@ -1,0 +1,56 @@
+<!-- formulario tipo plantilla
+<div class="container">
+<form  #myForm="ngForm" (ngSubmit) = "enviar()">
+    <div class="mb-3">
+        <label for="name" class="form-label">Nombre</label>
+        <input type="email" class="form-control" id="name" [(ngModel)]="user.name" required [ngModelOptions]="{standalone: true}">
+      </div> 
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" [(ngModel)]="user.email" required [ngModelOptions]="{standalone: true}">
+    </div>    
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+</div>
+-->
+
+<!-- formulario tipo reactivo-->
+<div class="container">
+    <form  [formGroup]="formularioReactivo" (ngSubmit) = "enviar()">
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input [ngClass]="{'is-invalid':  hasErrors('name', 'required') || hasErrors('name','minlength')}" 
+             type="text" class="form-control" id="name" formControlName="name">
+            <div class="text-danger" *ngIf="hasErrors('name', 'required')" > Campo Nombre es obligatorio </div>
+            <div class="text-danger" *ngIf="hasErrors('name', 'minlength')" > Campo nombre debe contener al menos 3 caracteres </div>
+        </div> 
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Apellidos</label>
+            <input  type="text" class="form-control" id="lastname" formControlName="lastname">
+          </div> 
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Tipo Documento</label>
+            <select class="form-select" id="tipoDocumento" formControlName="tipoDocumento">
+                <option value="DNI">DNI</option>
+                <option value="Pasaporte">Pasaporte</option>
+                <option value="NIE">NIE</option>
+            </select>
+          </div>
+
+          <div class="mb-3" *ngIf="mostrarDocumento">
+              <app-dni [tipoDocumento] = 'tipoDocumento' />
+          </div> 
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input [ngClass]="{'is-invalid':  hasErrors('email', 'required') || hasErrors('email', 'email')}" 
+          type="email" class="form-control" id="email" formControlName="email">
+          <div class="text-danger" *ngIf="hasErrors('email','required')" > Campo Email es obligatorio </div>
+          <div class="text-danger" *ngIf="hasErrors('email','email')" > Campo Email invalido </div>
+        </div>    
+        <button type="submit" class="btn btn-primary">Enviar</button>
+
+      </form>
+    </div>
